@@ -1,0 +1,22 @@
+.navigation-bar{
+    width: 0;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: lightgray;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    z-index: 1;
+}
+.navigation-bar.visible{
+    width: 250px;
+}
+.button-menu{
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease-in-out;
+    background-color: green;
+}
+

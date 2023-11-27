@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body{
+  background-color: beige;
+  font-family: Ebrima;
+}
+.container{
+  border: solid 1px black;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 20px;
+  width: 400px;
+  background-color: lightgray;
+  font-size: 24px;
+}
+#input-1 {
+border-radius: 6px;
+  width: 350px;
+  height: 30px;
+}
+#button-1{
+  border: none;
+  border-radius: 15px;
+  background-color: royalblue;
+  color: white;
+  width: 200px;
+  padding-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding-top: 15px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  font-size: 24px;
+}
+#text-1{
+  margin-bottom: 0.1px ;
+}
+.whole-navigation-bar{
+  background-color: black;
+  height: 100px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.input-and-button{
+  display: flex;
+  justify-content: center ;
+  align-content: center;
+
+}
+.search-button-in-topNavigationBar{
+  background-color: green;
+  border: 0;
+  width: 100px;
+  border-radius: 0 3px 3px 0;
+  color: beige;
+
+}
+.search-button-in-topNavigationBar:hover{
+  background-color: limegreen;
+  transition: background-color 0.3s ease;
+
+}
+.interactive-button, .menu-button{
+  background-color: darkgray;
+  margin-right: 20px;
+  border-radius: 3px 3px 3px 3px;
+  padding: 3px 3px 3px 3px;
+
+}
+.interactive-button:hover{
+  background-color: lightgray;
+  transition: background-color 0.3s ease;
+}
+input:focus{
+  outline: none;
+}
+.image{
+  width: 30px;
+  height: 30px;
+}
+
+.menu-button{
+  width: 30px;
+  height: 30px;
+  transition: transform 0.3s ease-in-out;
+}
+.menu-button.rotated{
+  transform: rotate(90deg);
+}
