@@ -1,6 +1,7 @@
 import {useState} from "react";
 import './LeftNavBar.css';
 import menu from "./menu.png";
+import { Link } from "react-router-dom";
 
 export default function LeftNavBar(props) {
 
@@ -13,6 +14,19 @@ export default function LeftNavBar(props) {
                 <button className={"button-close"} onClick={() => {
                     setIsVisible(false);
                 }}>Close</button>
+                <nav>
+                    <ul>
+                        <li>
+                            hui
+                        </li>
+                        <li>
+                            zalupa
+                        </li>
+                        <li>
+
+                        </li>
+                    </ul>
+                </nav>
             </div>
         );
 };
