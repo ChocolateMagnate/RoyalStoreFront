@@ -1,0 +1,21 @@
+jwt:
+  secret-key: jU2M4L3jMfsZcbWLXyXZw7JZjwTHCLWn
+
+spring:
+  data:
+    mongodb:
+      database: admin
+      authentication-database: admin
+      uri: mongodb://localhost:27017
+
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: 1060437617018-9c6f0vtn8vstf34mu8esmpg42n38b1ke.apps.googleusercontent.com
+            clientSecret: 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
+
+
+
+
