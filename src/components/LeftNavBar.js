@@ -1,7 +1,4 @@
-import {useState} from "react";
 import './LeftNavBar.css';
-import menu from "./menu.png";
-import { Link } from "react-router-dom";
 
 export default function LeftNavBar(props) {
 

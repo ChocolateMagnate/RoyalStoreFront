@@ -1,8 +1,4 @@
-import catalog from "./catalog.png"
-import list from "./list.png"
-import liked from "./liked.png"
-import cart from "./cart.png"
-import menu from "./menu.png"
+
 import {useState} from "react";
 import LeftNavBar from "./LeftNavBar";
 
@@ -16,15 +12,15 @@ export default function TopNavigationBar(){
         <div className={"whole-navigation-bar"}>
 
             <div className={"input-and-button"}>
-                <button  className={"menu-button"}> <img src={menu} onClick={() =>{
+                <button  className={"menu-button"}> <img src={"/menu.png"} onClick={() =>{
                     setIsVisible(true)
-                }}/></button>
-                <button className={"interactive-button"}><img className={"image"} src={catalog}/> </button>
+                }} alt={"menu"}/></button>
+                <button className={"interactive-button"}><img className={"image"} src={"/catalog.png"} alt={"catalog"}/> </button>
                 <input className={"w-52 flex justify-content-center"} type={"text"} placeholder={"Search a product."}/>
                 <button className={"search-button-in-topNavigationBar"}>Search</button>
-                <button className={"interactive-button ml-5"}> <img className={"image"} src={list}/> </button>
-                <button className={"interactive-button"}> <img className={"image"} src={liked}/></button>
-                <button className={"interactive-button"}> <img className={"image"} src={cart}/></button>
+                <button className={"interactive-button ml-5"}> <img className={"image"} src={"/list.png"} alt={"list"}/> </button>
+                <button className={"interactive-button"}> <img className={"image"} src={'/liked.png'} alt={"linked"}/></button>
+                <button className={"interactive-button"}> <img className={"image"} src={"/cart.png"} alt={"cart"}/></button>
             </div>;
 
 
