@@ -1,4 +1,5 @@
 import './LeftNavBar.css';
+import {Link} from "react-router-dom";
 
 export default function LeftNavBar(props) {
 
@@ -8,19 +9,19 @@ export default function LeftNavBar(props) {
 
         return (
             <div className={`navigation-bar ${isVisible ? 'visible' : ''} `}>
-                <button className={"button-close"} onClick={() => {
-                    setIsVisible(false);
-                }}>Close</button>
                 <nav>
-                    <ul>
-                        <li>
-                            hui
-                        </li>
-                        <li>
-                            zalupa
-                        </li>
-                        <li>
 
+                <button className={"button-close"}  onClick={() => {
+                    setIsVisible(false);
+                }}><img src={"/cross.png"} alt={"cross"}/></button>
+                    <div className={"LogAndSign"}>
+                        <Link to={"/registration"} className={"sign-up"}>Sign in</Link>
+                        <p> || </p>
+                        <Link to={"/logIn"} className={"log-in"}>Log in</Link>
+                    </div>
+                    <ul>
+                        <li className={"option"}>
+                            <Link to={"/"}>Home</Link>
                         </li>
                     </ul>
                 </nav>

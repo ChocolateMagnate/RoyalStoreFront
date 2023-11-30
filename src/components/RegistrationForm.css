@@ -1,0 +1,83 @@
+.registration-form{
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid lightpink;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 0 10px #ccc;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 50px;
+}
+.remember-me{
+    display: flex;
+    justify-content: flex-start;
+
+}
+.enter-text{
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+}
+.register-button{
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: lightgreen;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 20px;
+}
+.register-button:hover{
+    background-color: green;
+}
+.register-button:active{
+    background-color: darkgreen;
+}
+.register-button:focus{
+    outline: none;
+}
+.register-button:disabled{
+    background-color: lightgray;
+    cursor: not-allowed;
+}
+.LogAndSign{
+display: flex;
+    top: 8px;
+    left: 2px;
+    position: absolute;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    flex-wrap: nowrap;
+}
+.log-in, .sign-up{
+    margin-right: 5px;
+    margin-left: 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 2px;
+    flex-wrap: nowrap;
+}
+.log-in:hover, .sign-up:hover{
+    background-color: lightgreen;
+    color: #000;
+    border: 1px solid #000;
+    border-radius: 5px;
+    padding: 2px;
+    cursor: pointer;
+    transition: 0.3s;
+}
