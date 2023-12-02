@@ -14,6 +14,7 @@ import MyCart from "./components/MyCart";
 import Catalog from "./components/Catalog";
 import PhonesApple from "./components/PhonesApple";
 import Smartphones from "./components/Smartphones";
+import Dashboard from "./components/Dashboard";
 
 
 
@@ -29,6 +30,7 @@ function App() {
                     <Route path={"/myCart"} element={<MyCart/>}></Route>
                     <Route path={"/smartphones"} element={<Smartphones/>}></Route>
                     <Route path={"/phonesApple"} element={<PhonesApple/>}></Route>
+                  <Route path={"/dashboard"} element={<Dashboard/>}></Route>
               </Routes>
           </Router>
 

@@ -26,6 +26,9 @@ export default function LeftNavBar(props) {
                         <li className={"option"}>
                             <Link to={"/"}>New</Link>
                         </li>
+                        <li className={"option"}>
+                            <Link to={"/dashboard"}>Dashboard</Link>
+                        </li>
                     </ul>
                 </nav>
             </div>
