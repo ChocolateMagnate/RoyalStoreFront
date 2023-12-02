@@ -24,7 +24,7 @@ export default function TopNavigationBar(){
                     }
                 }/>
                 </button>
-                <input className={"w-52 flex justify-content-center"} type={"text"} placeholder={"Search a product."}/>
+                <input className={"w-52 flex justify-content-center input-search"}  type={"text"} placeholder={"Search a product."}/>
                 <button className={"search-button-in-topNavigationBar"}>Search</button>
                 <button className={"interactive-button ml-5"}>
                 <Link to={"/orderedAlready"}><img className={"image"} src={"/list.png"} alt={"list"}/></Link>
@@ -35,7 +35,7 @@ export default function TopNavigationBar(){
                 <button className={"interactive-button"}>
                     <Link to={"/myCart"}><img src={"/cart.png"} alt={"cart"} className={"image"}/></Link>
                 </button>
-            </div>;
+            </div>
 
 
             <Catalog catalog = {catalog} setCatalog = {setCatalog}></Catalog>

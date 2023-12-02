@@ -12,6 +12,9 @@ import OrderedAlready from "./components/OrderedAlready";
 import MyLiked from "./components/MyLiked";
 import MyCart from "./components/MyCart";
 import Catalog from "./components/Catalog";
+import PhonesApple from "./components/PhonesApple";
+import Smartphones from "./components/Smartphones";
+
 
 
 function App() {
@@ -24,6 +27,8 @@ function App() {
                     <Route path={"/orderedAlready"} element={<OrderedAlready/>}></Route>
                     <Route path={"/myLiked"} element={<MyLiked/>}></Route>
                     <Route path={"/myCart"} element={<MyCart/>}></Route>
+                    <Route path={"/smartphones"} element={<Smartphones/>}></Route>
+                    <Route path={"/phonesApple"} element={<PhonesApple/>}></Route>
               </Routes>
           </Router>
 

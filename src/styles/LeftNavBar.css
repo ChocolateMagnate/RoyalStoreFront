@@ -4,11 +4,14 @@
     position: fixed;
     top: 0;
     left: 0;
-    background-color: lightgreen;
+    background-color: #B8B8FF;
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
     z-index: 1;
+    border: 1px solid #000;
+    border-top: 0;
+    border-bottom: 0;
 }
 .button-close{
     width: 30px;
@@ -20,6 +23,7 @@
     top: 10px;
     right: 10px;
     cursor: pointer;
+    border: 1px solid #000;
 
 
 
@@ -34,7 +38,6 @@
     background-color: green;
 }
 .option{
-  position: absolute;
     border: 0 solid #fff;
     font-size: 32px;
     font-family: Calibri;
@@ -44,7 +47,7 @@
 
 }
 .option:hover{
-    background-color: green;
+    background-color: #9381FF;
     color: #000;
     border: 0 solid #000;
     border-radius: 5px;
@@ -52,5 +55,12 @@
     cursor: pointer;
     transition: 0.3s;
 }
-
+.list-options{
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
 

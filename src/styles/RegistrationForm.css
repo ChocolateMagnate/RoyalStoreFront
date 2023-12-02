@@ -73,7 +73,7 @@ display: flex;
     flex-wrap: nowrap;
 }
 .log-in:hover, .sign-up:hover{
-    background-color: lightgreen;
+    background-color: #9381FF;
     color: #000;
     border: 1px solid #000;
     border-radius: 5px;

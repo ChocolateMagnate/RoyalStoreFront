@@ -1,4 +1,4 @@
-import './Catalog.css';
+import "../styles/Catalog.css";
 
 export default function Catalog(props) {
 
@@ -12,7 +12,8 @@ export default function Catalog(props) {
                     setCatalog(false)
                 }
             }><img src={"/cross.png"} alt={"cross"}/></button>
-            <div>
+            <div className={"catalog-content"}>
+
             </div>
         </div>
     )

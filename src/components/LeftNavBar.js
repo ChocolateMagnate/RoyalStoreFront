@@ -1,4 +1,4 @@
-import './LeftNavBar.css';
+import "../styles/LeftNavBar.css";
 import {Link} from "react-router-dom";
 
 export default function LeftNavBar(props) {
@@ -19,9 +19,12 @@ export default function LeftNavBar(props) {
                         <p> || </p>
                         <Link to={"/logIn"} className={"log-in"}>Log in</Link>
                     </div>
-                    <ul>
+                    <ul className={'list-options'}>
                         <li className={"option"}>
                             <Link to={"/"}>Home</Link>
+                        </li>
+                        <li className={"option"}>
+                            <Link to={"/"}>New</Link>
                         </li>
                     </ul>
                 </nav>

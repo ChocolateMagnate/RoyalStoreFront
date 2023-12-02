@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 body{
-  background-color: beige;
+  background-color: #F8F7FF;
   font-family: Ebrima;
 }
 .container{
@@ -41,7 +41,7 @@ border-radius: 6px;
   margin-bottom: 0.1px ;
 }
 .whole-navigation-bar{
-  background-color: black;
+  background-color: #ffd8be;
   height: 100px;
   width: 100%;
   display: flex;
@@ -53,9 +53,14 @@ border-radius: 6px;
   justify-content: center ;
   align-content: center;
 
+
+}
+.input-search{
+  border: 0;
+    border-radius: 3px 0 0 3px;
 }
 .search-button-in-topNavigationBar{
-  background-color: green;
+  background-color: #B8B8FF;
   border: 0;
   width: 100px;
   border-radius: 0 3px 3px 0;
@@ -68,14 +73,14 @@ border-radius: 6px;
 
 }
 .interactive-button, .menu-button{
-  background-color: darkgray;
+  background-color: #B8B8FF;
   margin-right: 20px;
   border-radius: 3px 3px 3px 3px;
   padding: 3px 3px 3px 3px;
 
 }
 .interactive-button:hover{
-  background-color: lightgray;
+  background-color: #9381FF;
   transition: background-color 0.3s ease;
 }
 input:focus{

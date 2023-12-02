@@ -1,4 +1,4 @@
-import "./RegistrationForm.css"
+import "../styles/RegistrationForm.css"
 
 export default function LogInForm() {
 return (

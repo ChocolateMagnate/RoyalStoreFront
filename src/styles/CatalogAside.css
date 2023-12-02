@@ -1,0 +1,32 @@
+.catalog-aside{
+    width: 10%;
+    height: 100vh;
+    margin-right: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 5px #ccc;
+
+}
+.list-goods{
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    flex-direction: column;
+    margin-bottom: 10px;
+    padding: 5px;
+
+}
+.list-goods li{
+    list-style-type: none;
+    margin-bottom: 5px;
+    padding: 5px;
+    border: 1px solid #ccc;
+
+    border-radius: 5px;
+    cursor: pointer;
+}
+.list-goods li:hover{
+    transition: 0.3s;
+    background-color: #ccc;
+
+}
