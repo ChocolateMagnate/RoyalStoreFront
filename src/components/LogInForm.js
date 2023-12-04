@@ -23,9 +23,9 @@ return (
                     password:password,
                     rememberMe: false
                 }
-                fetch(query, {method: "PUT", headers: {'Content-Type':'application/json'}, body: JSON.stringify(form)}).then(response => {
+                fetch(query, {method: "POST", headers: {'Content-Type':'application/json'}, body: JSON.stringify(form)}).then(response => {
+                    console.log(response)
                     return response.json();
-
                 })
                     .then(data => {
                     dispatch({type: "LOGIN_USER", payload: data})

@@ -3,12 +3,13 @@ import {useSelector} from "react-redux";
 
 
 export default function Dashboard() {
-    const [name, setName] = useState("");
-    const [producer, setProducer] = useState("");
+    const [model, setModel] = useState("");
+    const [brand, setBrand] = useState("");
     const [price, setPrice] = useState("");
     const [memory, setMemory] = useState("");
     const [description, setDescription] = useState("");
-    const [image, setImage] = useState("");
+    const [photo, setPhoto] = useState(new File([], ""));
+    const [os, setOs] = useState("");
     const [message, setMessage] = useState("");
 
     const token = useSelector(state => state.user.token)
@@ -17,33 +18,44 @@ export default function Dashboard() {
     return(
         <div className={"dashboard"}>
             <h1>Dashboard</h1>
-            <input type="text" placeholder={"name"} onChange={(event) => event.target.value}/>
-            <input type="text" placeholder={"producer"} onChange={(event) => event.target.value}/>
-            <input type="number" placeholder={"price"} onChange={(event) => event.target.value}/>
-            <input type="number" placeholder={"memory"} onChange={(event) => event.target.value}/>
-            <input type="text" placeholder={"description"} onChange={(event) => event.target.value}/>
-            <input type="file" alt={"phone-image"} onChange={(event) => event.target.value} />
+            <input type="text" placeholder={"Model"} onChange={(event) => setModel(event.target.value)}/>
+            <input type="text" placeholder={"Brand"} onChange={(event) => setBrand(event.target.value)}/>
+            <input type="number" placeholder={"Price"} onChange={(event) => setPrice(event.target.value)}/>
+            <input type="number" placeholder={"Memory"} onChange={(event) => setMemory(event.target.value)}/>
+            <input type="text" placeholder={"Operating system"} onChange={(event) => setOs(event.target.value)}/>
+            <input type="text" placeholder={"Description"} onChange={(event) => setDescription(event.target.value)}/>
+            <input type="file" alt={"phone-image"} onChange={(event) => setPhoto(event.target.files[0])} />
             <button onClick={() => {
                 const query = "http://localhost:8080/create-smartphone"
-                const form = {
-                    name: name,
-                    brand: producer,
-                    price: price,
-                    memory: memory,
-                    description: description,
-                    photo: image
-                }
-                fetch(query, {method: "PUT", headers: {'Authorization':"Bearer "+token,'Content-Type':'application/json'}, body: JSON.stringify(form)}).then(response => {
-                    if (response.status === 200) {
-                        console.log("Product inserted successfully.")
-                        setMessage("Product inserted successfully.")
-                    } else {
-                        console.log("Something went wrong. Please try again later.")
-                        setMessage("Something went wrong. Please try again later.")
-                    }
-                })
-            }
-            }>Insert</button>
+                const requestBody = new FormData()
+                requestBody.append("model", model)
+                requestBody.append("brand", brand)
+                requestBody.append("price", price)
+                requestBody.append("memory", memory)
+                requestBody.append("os", os)
+                requestBody.append("description", description)
+                requestBody.append("photo", photo)
+                console.log(photo)
+                fetch(query, { method: "POST",
+                               headers: { 'Authorization': "Bearer " + token },
+                               body: requestBody })
+                    .then(response => {
+                        switch (response.status) {
+                            case 200:
+                                setMessage("Product inserted successfully.")
+                                break
+                            case 302:
+                                setMessage("The product already exists.")
+                                break
+                            case 400:
+                                setMessage("The product could not be inserted.")
+                                break
+                            default:
+                                setMessage("Something went wrong. Please try again later.")
+
+                        }
+                    })
+            }}>Insert</button>
             {message && <p>{message}</p>}
         </div>
     )
