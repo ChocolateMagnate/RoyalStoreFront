@@ -28,3 +28,29 @@
     font-size: 2rem;
     cursor: pointer;
 }
+.catalog-content{
+    font-size: 32px;
+    width: 100%;
+    position: absolute;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+    align-items: start;
+}
+.header-ul{
+    font-size: 36px;
+
+}
+.catalog-list{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    margin-bottom: 450px;
+    margin-left: 5px;
+
+
+}

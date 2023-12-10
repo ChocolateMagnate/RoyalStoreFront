@@ -33,7 +33,7 @@ export function register(email, password, rememberMe, dispatch, navigate) {
     }
     let responseCode = 200
     fetch("http://localhost:8080/register",
-        {method: "PUT", headers: {'Content-Type':'application/json'}, body: JSON.stringify(form)})
+        {method: "POST", headers: {'Content-Type':'application/json'}, body: JSON.stringify(form)})
         .then(response => {
             responseCode = response.status
             return response.json()

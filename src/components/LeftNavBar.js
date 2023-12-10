@@ -24,11 +24,11 @@ export default function LeftNavBar(props) {
                             <Link to={"/"}>Home</Link>
                         </li>
                         <li className={"option"}>
-                            <Link to={"/"}>New</Link>
-                        </li>
-                        <li className={"option"}>
                             <Link to={"/dashboard"}>Dashboard</Link>
                         </li>
+                        <li className={"option"}>
+                            <Link to={"/about"}>About</Link>
+                            </li>
                     </ul>
                 </nav>
             </div>

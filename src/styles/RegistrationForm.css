@@ -14,6 +14,20 @@
     text-align: center;
     margin-top: 50px;
 }
+.registration-form button{
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: lightgreen;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 20px;
+}
 .remember-me{
     display: flex;
     justify-content: flex-start;

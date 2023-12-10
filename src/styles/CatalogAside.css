@@ -1,10 +1,12 @@
 .catalog-aside{
-    width: 10%;
+    width: 250px;
     height: 100vh;
     margin-right: 10px;
     padding: 5px;
     border: 1px solid #ccc;
     box-shadow: 0 0 5px #ccc;
+    box-sizing: border-box;
+
 
 }
 .list-goods{
@@ -14,19 +16,44 @@
     flex-direction: column;
     margin-bottom: 10px;
     padding: 5px;
+    word-wrap: break-word;
+
+    border-radius: 5px;
 
 }
+
 .list-goods li{
     list-style-type: none;
     margin-bottom: 5px;
     padding: 5px;
     border: 1px solid #ccc;
-
+    word-wrap: break-word;
     border-radius: 5px;
     cursor: pointer;
 }
 .list-goods li:hover{
     transition: 0.3s;
     background-color: #ccc;
+    color: #fff;
 
+}
+.category{
+    list-style-type: none;
+    margin-bottom: 5px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    word-wrap: break-word;
+    border-radius: 5px;
+}
+.ul-text{
+    margin-bottom: 5px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    word-wrap: break-word;
+    border-radius: 5px;
+}
+.ul-text:hover{
+    transition: 0.3s;
+    background-color: #ccc;
+    color: #fff;
 }

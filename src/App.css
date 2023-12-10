@@ -4,6 +4,7 @@
 body{
   background-color: #F8F7FF;
   font-family: Ebrima;
+  overflow: hidden;
 }
 .container{
   border: solid 1px black;
@@ -98,4 +99,11 @@ input:focus{
 }
 .menu-button.rotated{
   transform: rotate(90deg);
+}
+.logo{
+  width: 160px;
+    height: 100px;
+  position: absolute;
+    left: 0;
+    top: 0;
 }

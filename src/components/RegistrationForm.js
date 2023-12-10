@@ -19,15 +19,15 @@ export default function RegistrationForm() {
 
     return (<div className={"registration-form"}>
         <h1>Registration Form</h1>
-        <input type="text" placeholder={"Login"} onChange={(e) => {setEmail(e.target.value)}}/>
-        <input type="password" placeholder={"Password"} onChange={(e) => {setPassword(e.target.value)}}/>
+        <input type="text" placeholder={"Login"} className={"enter-text"} onChange={(e) => {setEmail(e.target.value)}}/>
+        <input type="password" placeholder={"Password"} className={"enter-text"} onChange={(e) => {setPassword(e.target.value)}}/>
         <div className={"row"}>
             <input type={"checkbox"} onChange={(e) => {
                 setRememberMe(e.target.checked)
             }}/>
             <label>Remember me</label>
         </div>
-        <button onClick={() => {
+        <button  onClick={() => {
             register(email, password, rememberMe, dispatch, navigate)}
         }>Register</button>
         {message && <p>{message}</p>}

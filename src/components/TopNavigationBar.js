@@ -1,5 +1,5 @@
 
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import LeftNavBar from "./LeftNavBar";
 import {Link} from "react-router-dom";
 import Catalog from "./Catalog";
@@ -8,12 +8,15 @@ export default function TopNavigationBar(){
 
     const [isVisible, setIsVisible] = useState(false)
     const [catalog, setCatalog] = useState(false)
+    const [search, setSearch] = useState("")
+    const [searched, setSearched] = useState(false)
+
 
 
     return(
 
         <div className={"whole-navigation-bar"}>
-
+        <Link to={"/"}><img src={"1.png"} alt={"logo"} className={"logo"}/></Link>
             <div className={"input-and-button"}>
                 <button  className={"menu-button"}> <img src={"/menu.png"} onClick={() =>{
                     setIsVisible(true)
