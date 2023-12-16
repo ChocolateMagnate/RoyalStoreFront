@@ -1,54 +1,90 @@
 import TopNavigationBar from "./TopNavigationBar";
 import CatalogAside from "./CatalogAside";
-import GoodsRendering from "./GoodsRendering";
 import {useEffect, useState} from "react";
 import ParticularGoods from "./ParticularGoods";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import "../styles/ParticularGoods.css"
 import ToolsAndAdvs from "./Welcome";
+import {tryLogin} from "../actions/UserActions";
 
+function getDefaultProducts(setProducts) {
+    let goods = []
+    const query = "http://localhost:8080/get-random-products"
+    fetch(query)
+        .then(response => response.json())
+        .then(respondedGoods => {
+            console.log(respondedGoods)
+            setProducts(respondedGoods)
+        })
+}
+
+function getProductsFromSearch(search, setProducts) {
+    const query = "http://localhost:8080/search-products-by-search&search=" + search
+    fetch(query)
+        .then(response => response.json())
+        .then(respondedGoods => {
+            setProducts(respondedGoods)
+        })
+}
+
+function getProductsFromParameters(parameters, setProducts) {
+    let query = "http://localhost:8080/get-products"
+    for (const parameter in parameters)
+        query += "&" + parameter + "=" + parameters[parameter]
+    fetch(query)
+        .then(response => response.json())
+        .then(respondedGoods => {
+            console.log(respondedGoods)
+            setProducts(respondedGoods)
+        })
+}
 
 export default function GuestPage() {
-
-    const [goods, setGoods] = useState([]);
+    const dispatch = useDispatch();
+    const [products, setProducts] = useState([]);
     const email = useSelector(state => state.user.email);
-
+    const token = useSelector(state => state.user.token);
+    const goods = useSelector(state => state.goods);
 
     useEffect(() => {
-        const query = "http://localhost:8080/get-random-smartphones"
-        fetch(query)
-            .then(response => response.json())
-            .then(goods => setGoods(goods))
-        console.log(goods)
+        dispatch(tryLogin())
+    }, []);
 
-    }, [])
+    useEffect(() => {
+        if (goods.isSearching) getProductsFromSearch(goods.text, setProducts)
+        else if (goods.parameters != null && goods.parameters.length !== 0)
+            getProductsFromParameters(goods.parameters, setProducts)
+        else getDefaultProducts(setProducts)
+    }, [goods.isSearching, goods.parameters, goods.text])
 
-    const goodsRendering = goods.map(good => {
-        return (
-            <div className={"goods-field"}>
-                <div className={"whole-smartphone-container"}>
-                    <ParticularGoods photo = {good.photo} brand = {good.brand} model = {good.model} price = {good.price + " UAH"}></ParticularGoods>
-                    <div className={"buttons"}>
-                        <button className={"button-favorites"} > <img src={"liked.png"} alt={"favorites"} className={"image"}></img>
+    const goodsRendering = products.map(good =>
+        <div className={"goods-field"}>
+            <div key={"item"} className={"whole-smartphone-container"}>
+                <ParticularGoods photo={good.photo} brand={good.brand} model={good.model}
+                                 price={good.price + " UAH"}></ParticularGoods>
+                <div className={"buttons"}>
+                    <button className={"button-favorites"}>
+                        <img src={"/liked.png"} alt={"favorites"} className={"image"} onClick={() => {
+                            const query = "http://localhost:8080/add-product-to-liked?email="
+                                + email + "&id=" + good.id
+                            fetch(query, {method: "PUT", headers: {"Authorization": "Bearer " + token},
+                                body: JSON.stringify(good)})
+                                .then(response => console.log(response.status))
 
-                        </button>
-                <button className={"button-buy"}> <img src={"cart.png"} alt={"cart"} className={"image"} onClick={
-                    () => {
-                        fetch("http://localhost:8080/add-smartphone-to-cart?email="+email, {
-                            method: "PUT", body: JSON.stringify(good)
-                        }).then(response => console.log(response.status))
-
-                    }
-                }/></button>
-
-                    </div>
+                        }}></img>
+                    </button>
+                    <button className={"button-buy"}>
+                        <img src={"/cart.png"} alt={"cart"} className={"image"} onClick={() => {
+                            const query = "http://localhost:8080/add-product-to-cart?email="
+                                + email + "&id=" + good.id
+                            fetch(query, {method: "PUT", headers: {"Authorization": "Bearer " + token},
+                                   body: JSON.stringify(good)})
+                                .then(response => console.log(response.status))
+                        }}/></button>
                 </div>
             </div>
+        </div>)
 
-        )
-    })
-console.log(goodsRendering)
-    console.log(goods[0])
     return (
         <div>
             <TopNavigationBar></TopNavigationBar>
@@ -56,15 +92,9 @@ console.log(goodsRendering)
             <div className={"flex flex-row"}>
                 <CatalogAside></CatalogAside>
                 <div className={"goods-field"}>
-                {goodsRendering.map((item) => (
-                    <div>
-                        <div key={"item"}>{item}</div>
-                    </div>
-
-                ))}
+                    {goodsRendering}
                 </div>
             </div>
         </div>
     )
-
 }

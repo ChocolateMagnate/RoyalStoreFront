@@ -40,6 +40,7 @@ export function register(email, password, rememberMe, dispatch, navigate) {
         })
         .then(data => {
             dispatch({type: "LOGIN_USER", payload: data})
+            saveUser(data)
             setTimeout(() => {
                 navigate("/")
             }, 3000)
@@ -49,4 +50,19 @@ export function register(email, password, rememberMe, dispatch, navigate) {
             console.log(error.status)
             handleRegistrationErrors(responseCode, dispatch)
         })
+}
+
+export function tryLogin() {
+    const user = JSON.parse(localStorage.getItem("user"))
+    if (user) return {type: "LOGIN_USER", payload: user}
+    else return { type: "IGNORE" }
+}
+
+export function saveUser(user) {
+    localStorage.setItem("user", JSON.stringify(user))
+}
+
+export function logout() {
+    localStorage.removeItem("user")
+    return {type: "LOGOUT_USER"}
 }
