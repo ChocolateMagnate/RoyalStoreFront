@@ -4,7 +4,7 @@
 body{
   background-color: #F8F7FF;
   font-family: Ebrima;
-  overflow: hidden;
+  height: 100vh;
 }
 .container{
   border: solid 1px black;
@@ -17,6 +17,8 @@ body{
   width: 400px;
   background-color: lightgray;
   font-size: 24px;
+  max-height: 80vh;
+  overflow-y: auto;
 }
 #input-1 {
 border-radius: 6px;

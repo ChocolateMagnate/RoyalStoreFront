@@ -13,10 +13,8 @@ import MyLiked from "./components/MyLiked";
 import MyCart from "./components/MyCart";
 import Catalog from "./components/Catalog";
 import PhonesApple from "./components/PhonesApple";
-import Smartphones from "./components/Smartphones";
 import Dashboard from "./components/Dashboard";
 import About from "./components/About";
-import Laptops from "./components/Laptops";
 
 
 
@@ -30,8 +28,6 @@ function App() {
                     <Route path={"/orderedAlready"} element={<OrderedAlready/>}></Route>
                     <Route path={"/myLiked"} element={<MyLiked/>}></Route>
                     <Route path={"/myCart"} element={<MyCart/>}></Route>
-                    <Route path={"/smartphones"} element={<Smartphones/>}></Route>
-                    <Route path={"/laptops"} element={<Laptops/>}></Route>
                     <Route path={"/phonesApple"} element={<PhonesApple/>}></Route>
                   <Route path={"/dashboard"} element={<Dashboard/>}></Route>
                   <Route path={"/about"} element={<About/>}></Route>

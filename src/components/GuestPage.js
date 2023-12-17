@@ -6,6 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import "../styles/ParticularGoods.css"
 import ToolsAndAdvs from "./Welcome";
 import {tryLogin} from "../actions/UserActions";
+import "../styles/Pagination.css"
 
 function getDefaultProducts(setProducts) {
     let goods = []
@@ -39,12 +40,26 @@ function getProductsFromParameters(parameters, setProducts) {
         })
 }
 
-export default function GuestPage() {
+export default function GuestPage(props) {
     const dispatch = useDispatch();
     const [products, setProducts] = useState([]);
     const email = useSelector(state => state.user.email);
     const token = useSelector(state => state.user.token);
     const goods = useSelector(state => state.goods);
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const goodsPerPage = 3;
+
+    const lastIndex= currentPage * goodsPerPage;
+    const firstIndex = lastIndex - goodsPerPage;
+
+    const goodsToRender = products.slice(firstIndex, lastIndex);
+    const pages = Math.ceil(products.length / goodsPerPage);
+    const pageNumbers = [...(new Array(pages).keys())].map(i => i + 1);
+
+    const handleClick = (number) => {
+        setCurrentPage(number)
+    }
 
     useEffect(() => {
         dispatch(tryLogin())
@@ -57,7 +72,7 @@ export default function GuestPage() {
         else getDefaultProducts(setProducts)
     }, [goods.isSearching, goods.parameters, goods.text])
 
-    const goodsRendering = products.map(good =>
+    const goodsRendering = goodsToRender.map(good =>
         <div className={"goods-field"}>
             <div key={"item"} className={"whole-smartphone-container"}>
                 <ParticularGoods photo={good.photo} brand={good.brand} model={good.model}
@@ -91,8 +106,22 @@ export default function GuestPage() {
             <ToolsAndAdvs></ToolsAndAdvs>
             <div className={"flex flex-row"}>
                 <CatalogAside></CatalogAside>
-                <div className={"goods-field"}>
-                    {goodsRendering}
+                <div>
+                    <div className={"goods-field"}>
+                        {goodsRendering}
+                    </div>
+                    {pages>1 && (
+                        <div className={"pagination"}>
+                            {pageNumbers.map(number => (
+                                <div
+                                    className={`page-number ${currentPage === number ? "active" : ''}`}
+                                    onClick={() => handleClick(number)}
+                                    key={number}>
+                                    <div>{number}</div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
