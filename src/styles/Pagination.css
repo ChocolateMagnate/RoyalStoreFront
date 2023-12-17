@@ -1,0 +1,20 @@
+.pagination-buttons{
+    position: sticky;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    width: 100%;
+
+
+}
+.pagination-buttons button{
+    margin: 0 5px;
+    padding: 5px 10px;
+    background-color: #9381FF;
+    border-radius: 5px;
+    color: #000;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+

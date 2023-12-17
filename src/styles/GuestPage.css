@@ -1,0 +1,12 @@
+.goods-field-container{
+    position: relative;
+}
+.pagination-buttons{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    width: 100%;
+    padding-bottom: 10px;
+}
