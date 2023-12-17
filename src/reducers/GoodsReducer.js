@@ -11,6 +11,11 @@ export default function GoodsReducer(state = initial, action) {
                 ...state,
                 text: action.text
             }
+        case "FILTER":
+            return {
+                ...state,
+                parameters: action.parameters
+            }
         default:
             return state
     }

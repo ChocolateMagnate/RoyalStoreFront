@@ -15,7 +15,7 @@ function handleRegistrationErrors(responseStatus, dispatch) {
 }
 
 const emailRegularExpression = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-export function register(email, password, rememberMe, dispatch, navigate) {
+export function register(email, password, rememberMe, isAdmin, dispatch, navigate) {
     if (email === "" || password === "") {
         console.log("Email and password must be specified.")
         dispatch({type: "REGISTRATION_FAILED", message: "Email and password must be specified."})
@@ -29,7 +29,8 @@ export function register(email, password, rememberMe, dispatch, navigate) {
     const form = {
         email: email,
         password: password,
-        rememberMe: rememberMe
+        rememberMe: rememberMe,
+        roles: [isAdmin ? "admin" : "user"]
     }
     let responseCode = 200
     fetch("http://localhost:8080/register",

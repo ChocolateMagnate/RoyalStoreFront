@@ -19,15 +19,13 @@ export default function MyCart() {
     }, [])
 
     const goodsRendering = goods.map(good =>
-            <div>
-                <TopNavigationBar></TopNavigationBar>
-                <ParticularGoods photo = {good.photo} model = {good.model} price = {good.price} brand = {good.brand} ></ParticularGoods>
-            </div>
+            <ParticularGoods photo = {good.photo} model = {good.model} price = {good.price} brand = {good.brand} ></ParticularGoods>
         )
     console.log(goods);
 
     return (
         <div>
+            <TopNavigationBar></TopNavigationBar>
             {goodsRendering.map((item) => (
                 <div>
                     <div key={"item"}>{item}</div>

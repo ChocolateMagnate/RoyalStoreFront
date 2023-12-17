@@ -12,6 +12,7 @@ export default function RegistrationForm() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [rememberMe, setRememberMe] = useState(false)
+    const [isAdmin, setIsAdmin] = useState(false)
 
     useEffect(() => {
         setMessage(serverResponseMessage)
@@ -27,8 +28,14 @@ export default function RegistrationForm() {
             }}/>
             <label>Remember me</label>
         </div>
-        <button  onClick={() => {
-            register(email, password, rememberMe, dispatch, navigate)}
+        <div className={"row"}>
+            <input type={"checkbox"} onChange={(e) => {
+                setIsAdmin(e.target.checked)
+            }}/>
+            <label>Register as admin</label>
+        </div>
+        <button onClick={() => {
+            register(email, password, rememberMe, isAdmin, dispatch, navigate)}
         }>Register</button>
         {message && <p>{message}</p>}
     </div>)
