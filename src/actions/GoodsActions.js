@@ -45,9 +45,10 @@ export function getProductsFromSearch(category, setProducts) {
 }
 
 export function getProductsFromParameters(query, parameters, setProducts) {
+    const filter = {}
     for (const parameter in parameters)
-        query += "&" + parameter + "=" + parameters[parameter]
-    fetch(query, { method: "POST" })
+        filter[parameter] = parameters[parameter]
+    fetch(query, { method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(filter)})
         .then(response => response.json())
         .then(respondedGoods => {
             console.log(respondedGoods)
@@ -70,8 +71,9 @@ export default function selectProducts(goods, category, setProducts) {
             query = "http://localhost:8080/get-products"
             break
     }
-    if (goods.isSearching) getProductsFromSearch(goods.text, setProducts)
-    else if (goods.parameters != null && goods.parameters.length !== 0)
+    console.log(goods)
+    if (goods.parameters != null && goods.parameters.length !== 0)
         getProductsFromParameters(query, goods.parameters, setProducts)
+    else if (goods.isSearching) getProductsFromSearch(goods.text, setProducts)
     else getDefaultProducts(category, setProducts)
 }

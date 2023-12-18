@@ -28,7 +28,7 @@ export default function Filter() {
             </div>
             <div className={"filter-field"}>
                 <label className={"filter-label"}>Memory:</label>
-                <input className={"filter-input"} type={"text"} onChange={(e) => {
+                <input className={"filter-input"} type={"checkbox"} onChange={(e) => {
                     setMemory(e.target.value)
                 }}/>
                 {memory}

@@ -14,7 +14,7 @@ export default function GoodsReducer(state = initial, action) {
         case "FILTER":
             return {
                 ...state,
-                parameters: action.parameters
+                parameters: action.payload
             }
         default:
             return state
