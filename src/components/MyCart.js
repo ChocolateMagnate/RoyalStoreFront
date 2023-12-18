@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 import ParticularGoods from "./ParticularGoods";
 import TopNavigationBar from "./TopNavigationBar";
+import "../styles/MyCart.css"
 
 
 export default function MyCart() {
@@ -18,19 +19,34 @@ export default function MyCart() {
             .then(goods => setGoods(goods))
     }, [])
 
+    const deleteGood = (good) => {
+        const updatedGoods = goods.filter(g => g.id !== good.id);
+        setGoods(updatedGoods);
+    }
+
     const goodsRendering = goods.map(good =>
-            <ParticularGoods photo = {good.photo} model = {good.model} price = {good.price} brand = {good.brand} ></ParticularGoods>
+            <div className={"smartphone"}>
+                <ParticularGoods photo = {good.photo} model = {good.model} price = {good.price} brand = {good.brand} ></ParticularGoods>
+                <div className={"buttons-cart"}>
+                    <button className={"delete-button"}><img className={"image-1"} src={"cross.png" } alt={"delete"} onClick={() => deleteGood(good)}/></button>
+                    <button className={"purchase-button"}><img className={"image-1"} src={"cart.png" } alt={"purchase"}/></button>
+                </div>
+
+            </div>
         )
     console.log(goods);
 
     return (
         <div>
-            <TopNavigationBar></TopNavigationBar>
-            {goodsRendering.map((item) => (
-                <div>
-                    <div key={"item"}>{item}</div>
-                </div>
-            ))}
+            <TopNavigationBar/>
+            <div className={"render-smartphones"}>
+                {goodsRendering.map((item) => (
+                    <div className={"smartphones"}>
+                        <div key={"item"}>{item}</div>
+                    </div>
+                ))}
+            </div>
+
         </div>
     )
 }

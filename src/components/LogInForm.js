@@ -26,6 +26,9 @@ export default function LogInForm() {
             <input type={"checkbox"} className={"checkbox"}
                    onChange={(e) => setRememberMe(e.target.checked)}/>
             Remember me
+            <input/>
+            <input type={"checkbox"} className={"checkbox"}/> Log in as Admin
+
             <button className={"register-button"} onClick={() => {
                 const query = "http://localhost:8080/login"
                 const user = {
