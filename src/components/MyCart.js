@@ -22,7 +22,15 @@ export default function MyCart() {
     const deleteGood = (good) => {
         const updatedGoods = goods.filter(g => g.id !== good.id);
         setGoods(updatedGoods);
-    }
+        fetch("http://localhost:8080/remove-product-from-cart?email=" + user.email + "&id=" + good.id ,{
+            method: "DELETE",
+            headers: {"Authorization": "Bearer " + user.token},
+            body: JSON.stringify(good)
+        }).then(response => response.json())
+            .catch(error => console.log(error))
+        }
+
+
 
     const goodsRendering = goods.map(good =>
             <div className={"smartphone"}>
@@ -39,6 +47,7 @@ export default function MyCart() {
     return (
         <div>
             <TopNavigationBar/>
+            <h1 className={"cart-title"}>Your products</h1>
             <div className={"render-smartphones"}>
                 {goodsRendering.map((item) => (
                     <div className={"smartphones"}>
