@@ -1,3 +1,4 @@
+import {tryAuthenticateUser, tryRegisterUser} from "./FetchActions";
 
 function handleRegistrationErrors(responseStatus, dispatch) {
     let message
@@ -15,30 +16,25 @@ function handleRegistrationErrors(responseStatus, dispatch) {
 }
 
 const emailRegularExpression = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-export function register(email, password, rememberMe, isAdmin, dispatch, navigate) {
-    if (email === "" || password === "") {
+export function register(user, dispatch, navigate) {
+    if (user.email === "" || user.password === "") {
         console.log("Email and password must be specified.")
         dispatch({type: "REGISTRATION_FAILED", message: "Email and password must be specified."})
         return
     }
-    if (!String(email).toLowerCase().match(emailRegularExpression)) {
+    if (!String(user.email).toLowerCase().match(emailRegularExpression)) {
         dispatch({type: "REGISTRATION_FAILED",
             message: "The login field must be an email address, always include the @ sign and the domain."})
         return
     }
     const form = {
-        email: email,
-        password: password,
-        rememberMe: rememberMe,
-        roles: [isAdmin ? "admin" : "user"]
+        email: user.email,
+        password: user.password,
+        rememberMe: user.rememberMe,
+        roles: [user.isAdmin ? "admin" : "user"]
     }
     let responseCode = 200
-    fetch("http://localhost:8080/register",
-        {method: "POST", headers: {'Content-Type':'application/json'}, body: JSON.stringify(form)})
-        .then(response => {
-            responseCode = response.status
-            return response.json()
-        })
+    tryRegisterUser(user)
         .then(data => {
             dispatch({type: "LOGIN_USER", payload: data})
             saveUser(data)
@@ -53,7 +49,7 @@ export function register(email, password, rememberMe, isAdmin, dispatch, navigat
         })
 }
 
-export function tryLogin() {
+export function tryLoginOnPageLoad() {
     const user = JSON.parse(localStorage.getItem("user"))
     if (user) return {type: "LOGIN_USER", payload: user}
     else return { type: "IGNORE" }
@@ -61,6 +57,14 @@ export function tryLogin() {
 
 export function saveUser(user) {
     localStorage.setItem("user", JSON.stringify(user))
+}
+
+export async function login(user) {
+    const response = await tryAuthenticateUser(user)
+    if (response != null) {
+        saveUser(response)
+        return {type: "LOGIN_USER", payload: response}
+    } else return {type: "LOGIN_FAILED"}
 }
 
 export function logout() {

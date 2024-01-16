@@ -13,7 +13,7 @@ export default function LeftNavBar(props) {
 
                 <button className={"button-close"}  onClick={() => {
                     setIsVisible(false);
-                }}><img src={"/cross.png"} alt={"cross"}/></button>
+                }}><img src={"/images/cross.png"} alt={"cross"}/></button>
                     <div className={"LogAndSign"}>
                         <Link to={"/registration"} className={"sign-up"}>Sign in</Link>
                         <p> || </p>

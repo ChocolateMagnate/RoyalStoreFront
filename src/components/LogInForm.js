@@ -2,7 +2,7 @@ import "../styles/RegistrationForm.css"
 import {useDispatch} from "react-redux";
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router";
-import {saveUser, tryLogin} from "../actions/UserActions";
+import {login, tryLoginOnPageLoad} from "../actions/UserActions";
 
 export default function LogInForm() {
 
@@ -13,7 +13,7 @@ export default function LogInForm() {
     const navigate = useNavigate()
 
     useEffect(() => {
-        dispatch(tryLogin())
+        dispatch(tryLoginOnPageLoad())
     }, [dispatch]);
 
     return (
@@ -28,28 +28,15 @@ export default function LogInForm() {
             Remember me
             <input/>
             <input type={"checkbox"} className={"checkbox"}/> Log in as Admin
-
-            <button className={"register-button"} onClick={() => {
-                const query = "http://localhost:8080/login"
+            <button className={"register-button"} onClick={async () => {
                 const user = {
                     email: email,
                     password: password,
                     rememberMe: rememberMe
                 }
-                fetch(query, { method: "POST", headers: {"Content-Type": "application/json"},
-                        body: JSON.stringify(user) })
-                    .then(response => {
-                        console.log(response)
-                        return response.json();
-                    })
-                    .then(data => {
-                        dispatch({type: "LOGIN_USER", payload: data})
-                        saveUser(data)
-                        console.log(data);
-                        navigate("/")
-                    })
+                dispatch(await login(user))
+                navigate("/")
             }}>Log In</button>
         </div>
     )
-
 }

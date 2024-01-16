@@ -2,6 +2,7 @@ import TopNavigationBar from "./TopNavigationBar";
 import {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 import ParticularGoods from "./ParticularGoods";
+import {fetchLiked} from "../actions/FetchActions";
 
 
 export default function MyLiked() {
@@ -9,10 +10,10 @@ export default function MyLiked() {
     const user = useSelector(state => state.user);
 
     useEffect(() => {
-        fetch("http://localhost:8080/get-liked?email=" + user.email,
-            {headers: {"Authorization": "Bearer " + user.token}})
-            .then(response => response.json())
-            .then(goods => setGoods(goods))
+        async function getGoods() {
+            setGoods(await fetchLiked(user))
+        }
+        getGoods()
     }, []);
 
     const goodsRendering = goods.map(good =>

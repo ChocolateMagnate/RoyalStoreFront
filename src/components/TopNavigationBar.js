@@ -19,11 +19,11 @@ export default function TopNavigationBar() {
         <div className={"whole-navigation-bar"}>
             <Link to={"/"}><img src={"1.png"} alt={"logo"} className={"logo"}/></Link>
             <div className={"input-and-button"}>
-                <button className={"menu-button"}><img src={"/menu.png"} onClick={() => {
+                <button className={"menu-button"}><img src={"/images/menu.png"} onClick={() => {
                     setIsVisible(true)
                 }} alt={"menu"}/></button>
                 <button className={"interactive-button"}>
-                    <img className={"image"} src={"/catalog.png"} alt={"catalog"}
+                    <img className={"image"} src={"/images/catalog.png"} alt={"catalog"}
                          onClick={() => {
                             setCatalog(true)
                         }

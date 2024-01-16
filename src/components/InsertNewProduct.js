@@ -3,13 +3,9 @@ import {useState} from "react";
 
 export default function InsertNewProduct(){
     const [name, setName] = useState();
-
     const [price, setPrice] = useState();
-
     const [producer, setProducer] = useState()
-
     const [description, setDescription] = useState()
-
     const [category, setCategory] = useState()
 
     return(
@@ -48,19 +44,18 @@ export default function InsertNewProduct(){
                 <button id={"button-1"} onClick={() => {
                     const products = JSON.parse(localStorage.getItem('products')) || [];
                     const newProducts = {
-                    name: name,
-                    price:price,
-                    producer:producer,
-                    description:description,
-                    category:category
+                        name: name,
+                        price:price,
+                        producer:producer,
+                        description:description,
+                        category:category
                     };
-                    if(products == null && products === undefined) {
+                    if (products == null) {
                         localStorage.setItem("products", JSON.stringify([newProducts]))
                     } else {
-                    products.push(newProducts)
+                        products.push(newProducts)
                         localStorage.setItem("products", JSON.stringify(products))
                     }
-
                 }}>Додати товар</button>
             </div>
         </div>

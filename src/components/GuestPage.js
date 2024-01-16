@@ -5,45 +5,28 @@ import ParticularGoods from "./ParticularGoods";
 import {useDispatch, useSelector} from "react-redux";
 import "../styles/ParticularGoods.css"
 import ToolsAndAdvs from "./Welcome";
-import {tryLogin} from "../actions/UserActions";
+import {tryLoginOnPageLoad} from "../actions/UserActions";
 import "../styles/Pagination.css"
+import {
+    addProductToCart,
+    addProductToLiked,
+    fetchProductsByParameters,
+    fetchProductsFromSearch,
+    fetchRandomProducts
+} from "../actions/FetchActions";
 
-function getDefaultProducts(setProducts) {
-    let goods = []
-    const query = "http://localhost:8080/get-random-products"
-    fetch(query)
-        .then(response => response.json())
-        .then(respondedGoods => {
-            console.log(respondedGoods)
-            setProducts(respondedGoods)
-        })
+
+async function getProductsToDisplay(goods) {
+    if (goods.isSearching) return await fetchProductsFromSearch(goods.text)
+    else if (goods.parameters != null && goods.parameters.length !== 0)
+        return await fetchProductsByParameters(goods.parameters)
+    else return await fetchRandomProducts()
 }
 
-function getProductsFromSearch(search, setProducts) {
-    const query = "http://localhost:8080/search-products-by-search&search=" + search
-    fetch(query)
-        .then(response => response.json())
-        .then(respondedGoods => {
-            setProducts(respondedGoods)
-        })
-}
-
-function getProductsFromParameters(parameters, setProducts) {
-    let query = "http://localhost:8080/get-products"
-    for (const parameter in parameters)
-        query += "&" + parameter + "=" + parameters[parameter]
-    fetch(query)
-        .then(response => response.json())
-        .then(respondedGoods => {
-            console.log(respondedGoods)
-            setProducts(respondedGoods)
-        })
-}
 
 export default function GuestPage(props) {
     const dispatch = useDispatch();
     const [products, setProducts] = useState([]);
-    const email = useSelector(state => state.user.email);
     const token = useSelector(state => state.user.token);
     const goods = useSelector(state => state.goods);
 
@@ -62,15 +45,16 @@ export default function GuestPage(props) {
     }
 
     useEffect(() => {
-        dispatch(tryLogin())
+        dispatch(tryLoginOnPageLoad())
     }, []);
 
     useEffect(() => {
-        if (goods.isSearching) getProductsFromSearch(goods.text, setProducts)
-        else if (goods.parameters != null && goods.parameters.length !== 0)
-            getProductsFromParameters(goods.parameters, setProducts)
-        else getDefaultProducts(setProducts)
-    }, [goods.isSearching, goods.parameters, goods.text])
+        async function populateProducts() {
+            const respondedGoods = await getProductsToDisplay(goods)
+            setProducts(respondedGoods)
+        }
+        populateProducts()
+    }, [goods, goods.isSearching, goods.parameters, goods.text])
 
     const goodsRendering = goodsToRender.map(good =>
         <div className={"goods-field"}>
@@ -79,22 +63,13 @@ export default function GuestPage(props) {
                                  price={good.price + " UAH"}></ParticularGoods>
                 <div className={"buttons"}>
                     <button className={"button-favorites"}>
-                        <img src={"/liked.png"} alt={"favorites"} className={"image"} onClick={() => {
-                            const query = "http://localhost:8080/add-product-to-liked?email="
-                                + email + "&id=" + good.id
-                            fetch(query, {method: "PUT", headers: {"Authorization": "Bearer " + token},
-                                body: JSON.stringify(good)})
-                                .then(response => console.log(response.status))
-
+                        <img src={"/images/liked.png"} alt={"favorites"} className={"image"} onClick={async () => {
+                            await addProductToLiked(good, token)
                         }}></img>
                     </button>
                     <button className={"button-buy"}>
-                        <img src={"/cart.png"} alt={"cart"} className={"image"} onClick={() => {
-                            const query = "http://localhost:8080/add-product-to-cart?email="
-                                + email + "&id=" + good.id
-                            fetch(query, {method: "PUT", headers: {"Authorization": "Bearer " + token},
-                                   body: JSON.stringify(good)})
-                                .then(response => console.log(response.status))
+                        <img src={"/images/cart.png"} alt={"cart"} className={"image"} onClick={async () => {
+                            await addProductToCart(good, token)
                         }}/></button>
                 </div>
             </div>
@@ -124,6 +99,5 @@ export default function GuestPage(props) {
                     )}
                 </div>
             </div>
-        </div>
-    )
+        </div>)
 }

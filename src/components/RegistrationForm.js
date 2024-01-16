@@ -35,7 +35,8 @@ export default function RegistrationForm() {
             <label>Register as admin</label>
         </div>
         <button onClick={() => {
-            register(email, password, rememberMe, isAdmin, dispatch, navigate)}
+            const user = {email: email, password: password, rememberMe: rememberMe, isAdmin: isAdmin}
+            register(user, dispatch, navigate)}
         }>Register</button>
         {message && <p>{message}</p>}
     </div>)
