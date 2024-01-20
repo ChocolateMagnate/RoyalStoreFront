@@ -1,4 +1,4 @@
-const server = process.env.SERVER_ADDRESS
+const server = process.env.SERVER_ADDRESS || "http://localhost:8080"
 export async function fetchCart(email, token) {
     return await fetch(server + "/get-cart?email=" + email, {headers: {"Authorization": "Bearer " + token}})
         .then(response => response.json())

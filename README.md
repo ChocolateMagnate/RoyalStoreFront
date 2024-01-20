@@ -22,9 +22,16 @@ The app will be running on localhost:3000. Notice that this app requires
 the backend to be running as well. The backend can be found [here](https://github.com/ChocolateMagnate/RoyalStoreBack/).
 
 In case if you need to run the app on a different port, you can do so by
-creating a new file called .env.local in the root directory of the project
-and adding the following line:
+passing the port number as an argument to the start script:
 ```commandline
-SERVER_ADDRESS=http://localhost:PORT_NUMBER
+npm start --port 3001
 ```
-Where PORT_NUMBER is the port number you want to run the app on.
+where 3001 is the port number.
+
+If you need to configure the URL of the backend server, create a .env.local file
+in the root directory of the project and add the following line:
+```commandline
+SERVER_ADDRESS=<your server address>
+```
+where <your server address> is the URL of the backend server. By default, it will run
+try to call http://localhost:8080, which is the default port of the Spring server.
