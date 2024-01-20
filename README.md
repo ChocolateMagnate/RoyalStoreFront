@@ -20,3 +20,11 @@ npm start
 ```
 The app will be running on localhost:3000. Notice that this app requires
 the backend to be running as well. The backend can be found [here](https://github.com/ChocolateMagnate/RoyalStoreBack/).
+
+In case if you need to run the app on a different port, you can do so by
+creating a new file called .env.local in the root directory of the project
+and adding the following line:
+```commandline
+SERVER_ADDRESS=http://localhost:PORT_NUMBER
+```
+Where PORT_NUMBER is the port number you want to run the app on.

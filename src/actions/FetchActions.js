@@ -1,4 +1,4 @@
-const server = "http://localhost:8080"
+const server = process.env.SERVER_ADDRESS
 export async function fetchCart(email, token) {
     return await fetch(server + "/get-cart?email=" + email, {headers: {"Authorization": "Bearer " + token}})
         .then(response => response.json())
@@ -64,7 +64,7 @@ export async function tryAuthenticateUser(user) {
     return await fetch(server + "/login",
         {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(user)})
         .then(response => response.json())
-        .catch(error => null)
+        .catch(null)
 }
 
 export async function tryRegisterUser(user) {
@@ -77,5 +77,5 @@ export async function fetchLiked(user) {
     return await fetch(server + "/get-liked?email=" + user.email,
         {headers: {"Authorization": "Bearer " + user.token}})
         .then(response => response.json())
-        .catch(error => [])
+        .catch(() => [])
 }
