@@ -1,20 +1,18 @@
 import TopNavigationBar from "./TopNavigationBar";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {useSelector} from "react-redux";
 import ParticularGoods from "./ParticularGoods";
 import {fetchLiked} from "../actions/FetchActions";
+import useStartup from "../hooks/useStartup";
 
 
 export default function MyLiked() {
     const [goods, setGoods] = useState([]);
     const user = useSelector(state => state.user);
 
-    useEffect(() => {
-        async function getGoods() {
-            setGoods(await fetchLiked(user))
-        }
-        getGoods()
-    }, []);
+    useStartup(() =>
+        fetchLiked(user).then(respondedGoods => setGoods(respondedGoods))
+    );
 
     const goodsRendering = goods.map(good =>
         <div>

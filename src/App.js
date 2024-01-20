@@ -11,8 +11,6 @@ import About from "./components/About";
 import Smartphones from "./components/Smartphones";
 import Laptops from "./components/Laptops";
 
-
-
 function App() {
   return (
           <Router>
@@ -29,8 +27,6 @@ function App() {
                   <Route path={"/about"} element={<About/>}></Route>
               </Routes>
           </Router>
-
-
   )
 }
 

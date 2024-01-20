@@ -1,20 +1,18 @@
 import "../styles/RegistrationForm.css"
 import {useDispatch} from "react-redux";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {useNavigate} from "react-router";
 import {login, tryLoginOnPageLoad} from "../actions/UserActions";
+import useStartup from "../hooks/useStartup";
 
 export default function LogInForm() {
-
-    const dispatch = useDispatch();
+    const dispatch = useDispatch()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [rememberMe, setRememberMe] = useState(false)
     const navigate = useNavigate()
 
-    useEffect(() => {
-        dispatch(tryLoginOnPageLoad())
-    }, [dispatch]);
+    useStartup(() => dispatch(tryLoginOnPageLoad()))
 
     return (
         <div className={"registration-form"}>

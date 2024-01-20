@@ -1,21 +1,19 @@
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {useSelector} from "react-redux";
 import ParticularGoods from "./ParticularGoods";
 import TopNavigationBar from "./TopNavigationBar";
 import "../styles/MyCart.css"
 import {fetchCart, removeProductFromCart} from "../actions/FetchActions";
+import useStartup from "../hooks/useStartup";
 
 
 export default function MyCart() {
     const [goods, setGoods] = useState([]);
     const user = useSelector(state => state.user);
 
-    useEffect( () => {
-        async function getGoods() {
-            setGoods(await fetchCart(user.email, user.token))
-        }
-        getGoods()
-    }, [])
+    useStartup( () =>
+        fetchCart(user.email, user.token).then(respondedGoods => setGoods(respondedGoods))
+    )
 
     const deleteGood = async (good) => {
         const updatedGoods = goods.filter(g => g.id !== good.id)

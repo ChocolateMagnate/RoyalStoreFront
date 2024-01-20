@@ -15,7 +15,7 @@ function handleRegistrationErrors(responseStatus, dispatch) {
     dispatch({type: "REGISTRATION_FAILED", message: message})
 }
 
-const emailRegularExpression = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+const emailRegularExpression = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 export function register(user, dispatch, navigate) {
     if (user.email === "" || user.password === "") {
         console.log("Email and password must be specified.")
@@ -27,12 +27,7 @@ export function register(user, dispatch, navigate) {
             message: "The login field must be an email address, always include the @ sign and the domain."})
         return
     }
-    const form = {
-        email: user.email,
-        password: user.password,
-        rememberMe: user.rememberMe,
-        roles: [user.isAdmin ? "admin" : "user"]
-    }
+
     let responseCode = 200
     tryRegisterUser(user)
         .then(data => {

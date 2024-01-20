@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import BoxOfProduct from "./BoxOfProduct";
+import useStartup from "../hooks/useStartup";
 
 
 export  default function Rendering() {
@@ -8,11 +9,11 @@ export  default function Rendering() {
     const [productNameSearch, setProductNameSearch] = useState('');
     const [sortOption, setSortOption] = useState("byName");
 
-    useEffect(() => {
+    useStartup(() => {
         const products = JSON.parse((localStorage.getItem('products')) || []);
         setProducts(products);
         setFilteredProduct(products);
-    }, []);
+    });
 
 
     const executeSearch = () => {

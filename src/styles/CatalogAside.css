@@ -6,13 +6,12 @@
     border: 1px solid #ccc;
     box-shadow: 0 0 5px #ccc;
     box-sizing: border-box;
-
-
 }
+
 .list-goods{
     display: flex;
-    justify-content: start;
-    align-items: start;
+    justify-content: flex-start;
+    align-items: flex-start;
     flex-direction: column;
     margin-bottom: 10px;
     padding: 5px;
@@ -22,7 +21,7 @@
 
 }
 
-.list-goods li{
+.list-goods li {
     list-style-type: none;
     margin-bottom: 5px;
     padding: 5px;
@@ -31,13 +30,15 @@
     border-radius: 5px;
     cursor: pointer;
 }
-.list-goods li:hover{
+
+.list-goods li:hover {
     transition: 0.3s;
     background-color: #ccc;
     color: #fff;
 
 }
-.category{
+
+.category {
     list-style-type: none;
     margin-bottom: 5px;
     padding: 5px;
@@ -45,14 +46,15 @@
     word-wrap: break-word;
     border-radius: 5px;
 }
-.ul-text{
+.ul-text {
     margin-bottom: 5px;
     padding: 5px;
     border: 1px solid #ccc;
     word-wrap: break-word;
     border-radius: 5px;
 }
-.ul-text:hover{
+
+.ul-text:hover {
     transition: 0.3s;
     background-color: #ccc;
     color: #fff;

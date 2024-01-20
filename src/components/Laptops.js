@@ -2,18 +2,16 @@ import TopNavigationBar from "./TopNavigationBar";
 import Filter from "./Filter";
 import {useSelector} from "react-redux";
 import Goods from "./Goods";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import selectProducts from "../actions/GoodsActions";
+import useStartup from "../hooks/useStartup";
 
 
 export default function Laptops() {
     const goods = useSelector(state => state.goods)
     const [products, setProducts] = useState([]);
 
-    useEffect(() => {
-        selectProducts(goods, "laptops", setProducts)
-        console.log(products)
-    }, [goods]);
+    useStartup(() => selectProducts(goods, "laptops", setProducts))
 
     return (<div>
         <TopNavigationBar/>

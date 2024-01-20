@@ -37,7 +37,7 @@
     flex-direction: row;
     justify-content: flex-start;
 
-    align-items: start;
+    align-items: flex-start;
 }
 .header-ul{
     font-size: 36px;

@@ -14,6 +14,7 @@ import {
     fetchProductsFromSearch,
     fetchRandomProducts
 } from "../actions/FetchActions";
+import useStartup from "../hooks/useStartup";
 
 
 async function getProductsToDisplay(goods) {
@@ -24,7 +25,7 @@ async function getProductsToDisplay(goods) {
 }
 
 
-export default function GuestPage(props) {
+export default function GuestPage() {
     const dispatch = useDispatch();
     const [products, setProducts] = useState([]);
     const token = useSelector(state => state.user.token);
@@ -36,6 +37,7 @@ export default function GuestPage(props) {
     const lastIndex= currentPage * goodsPerPage;
     const firstIndex = lastIndex - goodsPerPage;
 
+    console.log(products)
     const goodsToRender = products.slice(firstIndex, lastIndex);
     const pages = Math.ceil(products.length / goodsPerPage);
     const pageNumbers = [...(new Array(pages).keys())].map(i => i + 1);
@@ -44,17 +46,13 @@ export default function GuestPage(props) {
         setCurrentPage(number)
     }
 
-    useEffect(() => {
+    useStartup(() => {
         dispatch(tryLoginOnPageLoad())
-    }, []);
+    });
 
     useEffect(() => {
-        async function populateProducts() {
-            const respondedGoods = await getProductsToDisplay(goods)
-            setProducts(respondedGoods)
-        }
-        populateProducts()
-    }, [goods, goods.isSearching, goods.parameters, goods.text])
+        getProductsToDisplay(goods).then(respondedGoods => setProducts(respondedGoods))
+    }, [goods])
 
     const goodsRendering = goodsToRender.map(good =>
         <div className={"goods-field"}>
