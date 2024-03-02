@@ -48,14 +48,17 @@ export async function removeProductFromCart(user, good) {
 
 export async function submitSmartphone(smartphone, token) {
     const requestBody = new FormData()
+    const characteristics = [
+        {key: "os", mobileOs: smartphone.os}
+    ]
     requestBody.append("model", smartphone.model)
     requestBody.append("brand", smartphone.brand)
     requestBody.append("price", smartphone.price)
     requestBody.append("memory", smartphone.memory)
-    requestBody.append("os", smartphone.os)
     requestBody.append("description", smartphone.description)
     requestBody.append("photo", smartphone.photo)
-    return await fetch(server + "/create-smartphone", {method: "POST", headers: {"Authorization": "Bearer " + token}, body: requestBody})
+    requestBody.append("characteristics", characteristics)
+    return await fetch(server + "/create-product", {method: "POST", headers: {"Authorization": "Bearer " + token}, body: requestBody})
         .then(response => response.status)
         .catch(error => console.log(error))
 }
